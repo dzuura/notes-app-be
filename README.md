@@ -103,7 +103,7 @@ The base URL for the API is: https://notes-app-be-psi.vercel.app/
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes'
 ```
 
 #### Example Response
@@ -134,7 +134,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes'
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC'
 ```
 
 #### Example Response
@@ -199,7 +199,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 
 #### Example Request
 ```curl
-curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC'
+curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC'
 ```
 
 #### Example Response
@@ -221,7 +221,7 @@ curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC'
 ```
 
 #### Example Response
@@ -297,7 +297,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/profile'
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/shared'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes/shared'
 ```
 
 #### Example Response
@@ -314,7 +314,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/sha
 ]
 ```
 
-### 12. Shared Note (not yet implemented)
+### 12. Revoke Note Sharing (not yet implemented)
 
 - **Endpoint:** `/notes/{id}/share/{share_id}`
 - **Method:** `DELETE`
@@ -326,5 +326,5 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/sha
 
 #### Example Request
 ```curl
-curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC/share/b9pr23r72ur23'
+curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC/share/b9pr23r72ur23'
 ```
