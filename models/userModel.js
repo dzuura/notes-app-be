@@ -1,8 +1,8 @@
-const db = require('../config/database');
+const db = require("../config/database");
 
 // Fungsi untuk menambahkan pengguna baru
-const addUser  = async (name, email, passwordHash) => {
-  const userRef = db.collection('users').doc();
+const addUser = async (name, email, passwordHash) => {
+  const userRef = db.collection("users").doc();
   await userRef.set({
     name,
     email,
@@ -15,8 +15,21 @@ const addUser  = async (name, email, passwordHash) => {
 
 // Fungsi untuk mendapatkan pengguna berdasarkan email
 const getUserByEmail = async (email) => {
-  const userSnapshot = await db.collection('users').where('email', '==', email).get();
-  return userSnapshot.empty ? null : { id: userSnapshot.docs[0].id, ...userSnapshot.docs[0].data() };
+  console.log("Searching for user with email:", email);
+  const userSnapshot = await db
+    .collection("users")
+    .where("email", "==", email)
+    .get();
+
+  if (userSnapshot.empty) {
+    console.log("User not found in Firestore.");
+    return null;
+  }
+
+  const userDoc = userSnapshot.docs[0];
+  console.log("User found:", userDoc.data());
+
+  return { id: userDoc.id, ...userDoc.data() };
 };
 
 module.exports = {
