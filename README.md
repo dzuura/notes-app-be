@@ -13,7 +13,7 @@ The base URL for the API is: https://notes-app-be-psi.vercel.app/
 
 ### 1. User Register
 
-- **Endpoint:** `/api/auth/register`
+- **Endpoint:** `/auth/register`
 - **Method:** `POST`
 - **Headers**:
   - `Content-Type: application/json`
@@ -39,7 +39,7 @@ The base URL for the API is: https://notes-app-be-psi.vercel.app/
 
 ### 2. User Login
 
-- **Endpoint:** `/api/auth/login`
+- **Endpoint:** `/auth/login`
 - **Method:** `POST`
 - **Headers**:
   - `Content-Type: application/json`
@@ -64,13 +64,13 @@ The base URL for the API is: https://notes-app-be-psi.vercel.app/
 
 ### 3. Create Note
 
-- **Endpoint:** `/api/notes`
+- **Endpoint:** `/notes`
 - **Method:** `POST`
 - **Headers**:
   - `Content-Type: application/json`
   - `Authorization: Bearer jwt_token`
 - **Response:**
-  - **Status Code:** 200
+  - **Status Code:** 201
   - **Response Body:** JSON object of the note id.
 
 #### Example Request
@@ -93,7 +93,7 @@ The base URL for the API is: https://notes-app-be-psi.vercel.app/
 
 ### 4. Get All Notes
 
-- **Endpoint:** `/api/notes`
+- **Endpoint:** `/notes`
 - **Method:** `GET`
 - **Headers**:
   - `Authorization: Bearer jwt_token`
@@ -103,7 +103,7 @@ The base URL for the API is: https://notes-app-be-psi.vercel.app/
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes'
 ```
 
 #### Example Response
@@ -124,7 +124,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes'
 
 ### 5. Get Note By ID
 
-- **Endpoint:** `/api/notes/{id}`
+- **Endpoint:** `/notes/{id}`
 - **Method:** `GET`
 - **Headers**:
   - `Authorization: Bearer jwt_token`
@@ -134,7 +134,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes'
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC'
 ```
 
 #### Example Response
@@ -153,23 +153,23 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 
 ### 6. Update Note
 
-- **Endpoint:** `/api/notes/{id}`
+- **Endpoint:** `/notes/{id}`
 - **Method:** `PUT`
 - **Headers**:
   - `Content-Type: application/json`
   - `Authorization: Bearer jwt_token`
 - **Response:**
   - **Status Code:** 200
-  - **Response Body:** Error message with required fields.
+  - **Response Body:** JSON object of the updated note.
 
 #### Example Request
 ```json
 {
-  "title": "Updated Note Title",
-  "content": "Updated content for my note.",
-  "tags": ["work"],
-  "folder": "Work",
-  "is_pinned": false
+  "title": "My First Note",
+  "content": "This is the content of my first note.",
+  "tags": ["personal", "important"],
+  "folder": "Personal",
+  "is_pinned": true,
 }
 ```
 
@@ -189,7 +189,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 
 ### 7. Delete Note
 
-- **Endpoint:** `/api/notes/{id}`
+- **Endpoint:** `/notes/{id}`
 - **Method:** `DELETE`
 - **Headers**:
   - `Authorization: Bearer jwt_token`
@@ -199,7 +199,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 
 #### Example Request
 ```curl
-curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC'
+curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC'
 ```
 
 #### Example Response
@@ -211,7 +211,7 @@ curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/
 
 ### 8. Not Found Note
 
-- **Endpoint:** `/api/notes/{id}`
+- **Endpoint:** `/notes/{id}`
 - **Method:** `GET`
 - **Headers**:
   - `Authorization: Bearer jwt_token`
@@ -221,7 +221,7 @@ curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC'
 ```
 
 #### Example Response
@@ -231,9 +231,37 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 }
 ```
 
-### 9. Share Note (not yet implemented)
+### 9. User Profile
 
-- **Endpoint:** `/api/notes/{id}/share`
+- **Endpoint:** `/profile`
+- **Method:** `GET`
+- **Headers**:
+  - `Authorization: Bearer jwt_token`
+- **Response:**
+  - **Status Code:** 200
+  - **Response Body:** JSON object of user data.
+
+#### Example Request
+```curl
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/profile'
+```
+
+#### Example Response
+```json
+{
+    "id": "dSVrHUEejd7MfjX4zhzv",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "created_at": {
+        "_seconds": 1738317899,
+        "_nanoseconds": 253000000
+    }
+}
+```
+
+### 10. Share Note (not yet implemented)
+
+- **Endpoint:** `/notes/{id}/share`
 - **Method:** `POST`
 - **Headers**:
   - `Content-Type: application/json`
@@ -257,9 +285,9 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 }
 ```
 
-### 10. Shared Note (not yet implemented)
+### 11. Shared Note (not yet implemented)
 
-- **Endpoint:** `/api/notes/shared`
+- **Endpoint:** `/notes/shared`
 - **Method:** `GET`
 - **Headers**:
   - `Authorization: Bearer jwt_token`
@@ -269,7 +297,7 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/oiO
 
 #### Example Request
 ```curl
-curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/shared'
+curl --location --request GET 'https://notes-app-be-psi.vercel.app/notes/shared'
 ```
 
 #### Example Response
@@ -286,9 +314,9 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/sha
 ]
 ```
 
-### 11. Shared Note (not yet implemented)
+### 12. Revoke Note Sharing (not yet implemented)
 
-- **Endpoint:** `/api/notes/{id}/share/{share_id}`
+- **Endpoint:** `/notes/{id}/share/{share_id}`
 - **Method:** `DELETE`
 - **Headers**:
   - `Authorization: Bearer jwt_token`
@@ -298,5 +326,5 @@ curl --location --request GET 'https://notes-app-be-psi.vercel.app/api/notes/sha
 
 #### Example Request
 ```curl
-curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/api/notes/oiOTbbr9zuhLQQUx3XoC/share/b9pr23r72ur23'
+curl --location --request DELETE 'https://notes-app-be-psi.vercel.app/notes/oiOTbbr9zuhLQQUx3XoC/share/b9pr23r72ur23'
 ```
